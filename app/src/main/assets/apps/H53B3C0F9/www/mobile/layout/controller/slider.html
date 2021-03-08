@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html class="g-container">
+
+<head>
+    <meta charset="utf-8">
+    <title>slider</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <script type="text/javascript" src="${ctx}/ui/mobile/util.js"></script>
+    <script type="text/javascript" src="${ctx}/ui/mobile/bootstrapTable.js"></script>
+    <script type="text/javascript" src="${ctx}/ui/mobile/mui.js"></script>
+</head>
+
+<body class="g-container">
+	<div id="slider" class="mui-slider">
+		<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+			<a v-for="(item,index) in items" :class="index>0?'mui-control-item':'mui-control-item mui-active'" :href="['#'+item.id]">{{item.title}}</a>
+		</div>
+		<div class="mui-slider-group">
+			<div class="mui-slider-item mui-control-content" v-for="(item,index) in items" :id="item.id">
+				<div :id="['scroll'+index]" class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<div class="mui-loading">
+							<div class="mui-spinner">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="dzl-hide">
+			<div id="tab1">
+				<form class="mui-input-group" id="form1">
+						<div class="mui-input-row">
+							<label for="textbox0">textbox</label>
+							<input id="textbox0" type="text" class="mui-input-clear">
+						</div>
+						<div class="mui-input-row">
+							<label for="combobox0">combobox</label>
+							<input id="combobox0" type="text" readonly="true" >
+						</div>
+						<div class="mui-input-row">
+							<label for="combobox1">combobox(2)</label>
+							<input id="combobox1" type="text" readonly="true" >
+						</div>
+						<div class="mui-input-row">
+							<label for="combobox2">combobox(3)</label>
+							<input id="combobox2" type="text" readonly="true" >
+						</div>
+						<div class="mui-input-row">
+							<label for="datebox0">datebox</label>
+							<input id="datebox0" type="text" readonly="true" >
+						</div>
+						<div class="mui-input-row">
+							<label for="datetimebox0">datetimebox</label>
+							<input id="datetimebox0" type="text" readonly="true" >
+						</div>
+						<div class="mui-input-row">
+							<label for="numberbox0">numberbox</label>
+							<div id="numberbox0" class="mui-numbox" data-numbox-step='10' data-numbox-min='10' data-numbox-max='90'>
+								<button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
+								<input class="mui-input-numbox" type="number" />
+								<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
+							</div>
+						</div>
+						<div class="mui-input-row">
+							<label for="switchbutton0">switchbutton</label>
+							<div id="switchbutton0" class="mui-switch">
+								<div class="mui-switch-handle"></div>
+							</div>
+						</div>
+						<div id="checkboxlist0">
+							<checkboxlist></checkboxlist>
+						</div>
+						<div id="radiobuttonlist0">
+							<radiobuttonlist></radiobuttonlist>
+						</div>
+						<div class="mui-multi-row">
+							<label for="multitext0">multitextbox</label>
+							<textarea id="multitext0" rows="5" placeholder="多行文本框"></textarea>
+						</div>
+						<div class="mui-button-row">
+							<button class="mui-btn mui-btn-primary" type="button" id="btn0">提交</button>&nbsp;&nbsp;
+						</div>
+					</form>
+			</div>
+			<div id="tab2">
+				<table id="table"></table>
+			</div>
+			<div id="tab3">
+				tab3
+			</div>
+			<div id="tab4">
+				tab4
+			</div>
+			<div id="tab5">
+				tab5
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		var options = [{
+				title:"高血压保卡",
+				id:"item1mobile",
+				content:"tab1",
+				init:function(){}
+			},{
+				title:"分级管理",
+				id:"item2mobile",
+				content:"tab2",
+				init:function(){
+					var option = {
+						trancode:"002001001024",
+						params:{},
+						columns: [{
+							field: 'name',
+							title: 'name',
+							edit
+						}, {
+							field: 'pyCode',
+							title: 'pyCode'
+						}]
+					};
+
+					var grid0 = new h5ui.datagrid("table", option);
+				}
+			},{
+				title:"随访信息",
+				id:"item3mobile",
+				content:"tab3",
+				init:function(){}
+			},{
+				title:"血压曲线图",
+				id:"item4mobile",
+				content:"tab4",
+				init:function(){}
+			}];
+			var slider = new h5ui.slider("slider",options);
+
+			var form1 = new h5ui.form("form1");
+
+			var texbox0options = {
+				value:"textbox0"
+			};
+
+			var textbox0 = new h5ui.textbox("textbox0",texbox0options);
+
+			form1.fields.textbox0 = textbox0;
+
+			var numberbox0options = {
+				value:"50"
+			};
+
+			var numberbox0 = new h5ui.numberbox("numberbox0",numberbox0options);
+			form1.fields.numberbox0=numberbox0;
+
+			var switchbutton0options = {
+				value:true
+			};
+
+			var switchbutton0 =  new h5ui.switchbutton("switchbutton0",switchbutton0options);
+
+			form1.fields.switchbutton0 = switchbutton0;
+
+			var multitext0options = {
+				value:"multitext"
+			};
+
+			var multitext0 = new h5ui.multitext("multitext0",multitext0options);
+
+			form1.fields.multitext0=multitext0;
+
+			var combobox0options = {
+				trancode:"002001001001",
+				params:{
+					"searchName": "ss",
+					"searchCode": "ss"
+				},
+				value:"02",
+				idField:"id",
+				textField:"text"
+			};
+
+			var combobox0 = new h5ui.combobox("combobox0",combobox0options);
+
+			form1.fields.combobox0 = combobox0;
+
+			var combobox1options = {
+				// trancode:"002001001001",
+				params:{
+					"searchName": "ss",
+					"searchCode": "ss"
+				},
+				value:"1,3",
+				idField:"id",
+				textField:"text",
+				layer:2
+			};
+
+			var combobox1 = new h5ui.combobox("combobox1",combobox1options);
+			combobox1.loadData([{
+							id:"1",
+							text:"1",
+							children:[{
+								id:"2",
+								text:"2",
+								children:[{
+									id:"7",
+									text:"7",
+								},{
+									id:"8",
+									text:"8",
+								}]
+							},{
+								id:"3",
+								text:"3",
+								children:[{
+									id:"9",
+									text:"9",
+								},{
+									id:"10",
+									text:"10",
+								}]
+							}]
+						},{
+							id:"4",
+							text:"4",
+							children:[{
+								id:"5",
+								text:"5",
+							},{
+								id:"6",
+								text:"6",
+							}]
+						}]);
+			form1.fields.combobox1=combobox1;
+
+			var combobox2options = {
+				// trancode:"002001001001",
+				params:{
+					"searchName": "ss",
+					"searchCode": "ss"
+				},
+				value:"1,3,3",
+				idField:"id",
+				textField:"text",
+				layer:3
+			};
+
+			var combobox2 = new h5ui.combobox("combobox2",combobox2options);
+			combobox2.loadData([{
+							id:"1",
+							text:"1",
+							children:[{
+								id:"2",
+								text:"2",
+								children:[{
+									id:"7",
+									text:"7",
+								},{
+									id:"8",
+									text:"8",
+								}]
+							},{
+								id:"3",
+								text:"3",
+								children:[{
+									id:"2",
+									text:"2",
+								},{
+									id:"3",
+									text:"3",
+								}]
+							}]
+						},{
+							id:"4",
+							text:"4",
+							children:[{
+								id:"5",
+								text:"5",
+							},{
+								id:"6",
+								text:"6",
+							}]
+						}]);
+			form1.fields.combobox2=combobox2;
+
+
+			var datebox0options = {
+				value:"2014-01-01",
+				type:'{"type":"date"}'
+			};
+			var datebox0 = new h5ui.datebox("datebox0",datebox0options);
+			form1.fields.datebox0=datebox0;
+
+			var datetimebox0options = {
+				value:"2014-01-01 15:37",
+				type:"{}"
+			};
+			var datetimebox0 = new h5ui.datebox("datetimebox0",datetimebox0options);
+			form1.fields.datetimebox0=datetimebox0;
+
+			var checkboxlist0options = {
+				title:"爱好",
+				valueField:"id",
+				data:[{
+					id:"0",
+					text:"打乒乓",
+					disabled:"",
+					checked:""
+				},{
+					id:"1",
+					text:"打篮球"
+				}]
+			};
+			var checkboxlist0 = new h5ui.checkboxlist("checkboxlist0",checkboxlist0options);
+
+			form1.fields.checkboxlist0 = checkboxlist0;
+
+			var radiobuttonlist0options = {
+				title:"性别",
+				valueField:"id",
+				data:[{
+					id:"0",
+					text:"男",
+					disabled:"",
+					checked:""
+				},{
+					id:"1",
+					text:"女"
+				}]
+			};
+			var radiobuttonlist0 = new h5ui.radiobuttonlist("radiobuttonlist0",radiobuttonlist0options);
+
+			form1.fields.radiobuttonlist0 = radiobuttonlist0;
+	</script>
+</body>
+
+</html>

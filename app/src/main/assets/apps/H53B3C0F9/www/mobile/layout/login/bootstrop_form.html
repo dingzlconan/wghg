@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>表单</title>
+
+
+
+    <script type="text/javascript" src="../../bootstrap.js"></script>
+
+    <style type="text/css">
+        .table>tbody>tr>td {
+            border-color: white;
+        }
+    </style>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+
+    <![endif]-->
+</head>
+<body>
+<header>
+    <div class="m-toolbar">
+        <div class="m-left">
+            <a href="#" class="easyui-linkbutton m-back" data-options="plain:true,outline:true,back:true">Back</a>
+        </div>
+        <div class="m-title">头部</div>
+    </div>
+</header>
+<div id="p2" class="easyui-navpanel">
+    <form class="form-horizontal" enctype="multipart/form-data">
+<table class="table">
+
+    <tr>
+        <td>
+            <div class="input-group date form_datetime"  data-date-format="yyyy-mm-dd hh:ii:ss" data-link-field="consBegin">
+                <input class="form-control" size="16" type="text" id="consBeginDp" />
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+            </div>
+        </td>
+
+
+    </tr>
+    <tr>
+        <td>
+            <select class="form-control">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="form-group">
+                <input id="file-1" type="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="2">
+            </div>
+
+        </td>
+    </tr>
+    <tr>
+        <td>
+
+            <textarea class="form-control" rows="5" name=textarea  ></textarea>
+        </td>
+    </tr>
+</table>
+
+
+
+
+
+        <input type="hidden" id="consBegin" />
+
+
+
+
+
+
+</form>
+</div>
+<footer class="footer">footer
+    <div class="m-title">footer</div>
+</footer>
+
+<script type="text/javascript">
+
+
+
+function informationlist(list) {
+        this.dom = list;
+        var status = this.GetQueryString("status");
+        var app = new Vue({
+            el: "#p2",
+            data: {
+                status: status,
+                number: 'CNCS201700003604'
+            }
+        });
+    }
+
+    informationlist.prototype = {
+        GetQueryString: function(name) {
+            var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if(r!=null)return  unescape(r[2]); return null;
+        }
+    }
+    var app = new informationlist($("#app"));
+
+        $(function(){
+            $("#p2").niceScroll();
+
+
+            var sysdate = new Date();
+            $('#consBeginDp').val(sysdate.DateAdd('w',-1).Format('yyyy-MM-dd hh:mm:ss'));
+            //$('#consBegin').val(sysdate.DateAdd('w',-1).Format('yyyy-MM-dd hh:mm:ss'));
+
+            //初始化日期控件
+            $('.form_datetime').datetimepicker({
+                language:  'zh-CN',
+                weekStart: 1,
+                todayBtn:  1,
+                autoclose: 1,
+                todayHighlight: 1,
+                startView: 2,
+                forceParse: true,
+                showMeridian: 1
+            });
+
+            $('#consBeginDp').datetimepicker().on('changeDate', function(ev){
+                app.dateCons = ev.date;
+            });
+        })
+</script>
+</body>
+</html>

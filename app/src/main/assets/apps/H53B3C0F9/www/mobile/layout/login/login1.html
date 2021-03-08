@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>登录</title>
+
+    <script type="text/javascript" src="../../bootstrap.js"></script>
+
+
+
+    <style type="text/css">
+        html,body{
+            height: 100%;
+
+            width: 100%;
+
+            padding:0 40px;
+            background: #29b4f0;
+            /* 	background-size:100% 100%; */
+
+        }
+        .u-userlogin{
+            height:150px;
+            width:150px;
+            border-radius:50%;
+            margin:50px auto;
+            margin-top:50px;
+            /* background:url(static/img/phuserlogin.png); */
+        }
+        .btn,.form-control{
+            width: 100%;
+
+
+        }
+        /* 	.form-control{
+                color:#eaeaea;
+            } */
+        .u-userl{
+            margin:auto;
+            max-width:500px;
+            margin-top:45px;
+        }
+
+        .btn-sm{
+            color:#fff;
+            font-size:14px;
+            font-weight:900;
+            border-radius:20px;
+        }
+
+        .glyphicon{
+            color:#fff;
+
+        }
+        .u-fpwd{
+            padding:4px 0;
+            color: #fff;
+
+        }
+
+
+
+        .btn-info{
+            background:#fff;
+            color:#25aafa;
+        }
+        .btn-info:hover{
+            background:#fff;
+            color:#25aafa;
+        }
+        .has-feedback .form-control{
+            background:#62c0f5;
+        }
+        .form-control{
+            border-color:#62c0f5;
+            padding-left: 33px;
+            color:#fff;
+        }
+        .form-control-feedback{
+            left:0;
+        }
+        .text-center{
+            color:#fff;
+        }
+        .-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+            color: #fff; opacity:1;
+        }
+
+        ::-moz-placeholder { /* Mozilla Firefox 19+ */
+            color: #fff !important;opacity:1;
+        }
+
+        input:-ms-input-placeholder{
+            color: #fff !important;opacity:1;
+        }
+
+        input::-webkit-input-placeholder{
+            color: #fff !important;
+            opacity:1;
+        }
+        .icheckbox_minimal-blue{
+            vertical-align: top;
+        }
+
+    </style>
+
+</head>
+<body>
+<div id="app" >
+    <!-- <h3 class="text-center">京煤集团分级诊疗平台</h3> -->
+    <div class="u-userlogin">
+        <img alt="" class="img-responsive" src="${ctx}/static/img/phuserlogin.png">
+    </div>
+
+    <div class="u-userl">
+
+        <div class="form-group u-borderrad has-feedback">
+
+            <div>
+                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                <input type="value" v-model="username" class="form-control" id="username" name="username" placeholder="邮箱/手机号" @focus="fitPos()">
+            </div>
+        </div>
+
+
+
+        `  <div class="form-group u-borderrad has-feedback">
+
+        <div>
+            <i></i>
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            <input type="password"  v-model="passward" class="form-control" id="password" name="password" placeholder="请输入密码" @focus="fitPos()">
+        </div>
+    </div>
+        <!-- 				<div class="u-fpwd">
+                            <span style="text-align: left;"><span></span><input class="uspwd" type="checkbox"></span>记住密码 </span>
+
+
+                            <span style="float:right;"> 忘记密码？	</span>
+                        </div> -->
+        <button type="button" class="btn u-borderrad btn-info btn-block btn-sm" v-on:click="login()">立即登录</button>
+
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    var pkemp="";
+    var message="";
+    var sysdate = new Date();
+    var app={};
+    function informationlist() {
+        app = new Vue({
+            el: "#app",
+            data: {
+                username:'',
+                passward:''
+            },
+            methods: {
+                login: function(){
+                    var vue = this;
+                    $.ajax({
+                        type:'POST',
+                        async:false,
+                        url:"${ctx}/loginnet",
+                        data: {param:JSON.stringify({'username':vue.username,'password':vue.passward+''})},
+                        success:function(response){
+                            if(response.status==0){
+                                //将tokenId缓存
+                                console.log(response);
+                                window.localStorage.setItem('zeboneTokenId',response.data);
+                                $(location).attr('href', 'loginhtml?tokenId='+response.data);
+                            }else{
+                                $.messager.alert('通知',response.desc);
+                            }
+                        }
+                    });
+                },
+                go_back : function(){
+                    //window.location.href='${ctx}/mobile/view?page=cons/mainPage/homePage';
+                    //ui.closewin();
+                },
+                fitPos:function(){
+                    setTimeout("$('#app').getNiceScroll(0).doScrollTop(80, 100)",150);
+                }
+            }
+        });
+    }
+
+    informationlist.prototype = {
+        GetQueryString: function(name) {
+            var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if(r!=null)return  unescape(r[2]); return null;
+        },
+        getdata: function(){
+            var data = [];
+            var param={pkCons:'${pkCons}'}
+            $.ajax({
+                type:'POST',
+                data: {param : JSON.stringify(param)},
+                async:false,
+                url:"proxy/handle?transCode="	+"010001001001",
+                success:function(response){
+                    //console.log(response);
+                    data=response;
+                    pkemp=data.data.detailList[0].pkEmp;
+                    message = data.data.detailList[0].note;
+                }
+            });
+            data.data.dateCons=dateFormatter(data.data.dateCons);
+            data.data.applydept = getStatus();
+            return data;
+        }
+    }
+
+    new informationlist();
+
+    $(function(){
+
+    });
+
+
+    //记住密码复选框
+    //启动icheck
+    /*  	$(("[type='checkbox']")).iCheck({
+     checkboxClass: 'icheckbox_minimal-blue',
+     radioClass: 'iradio_square-blue'
+     }); */
+
+
+</script>
+</body>
+</html>

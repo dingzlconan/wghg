@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>模板</title>
+
+    <script type="text/javascript" src="../../bootstrap.js"></script>
+
+
+    <style type="text/css">
+      #p2{ 
+        background: whitesmoke;
+      }
+      .table{
+        background: white;
+        box-shadow: 2px 2px 2px LightGray;
+      }
+      .table>tbody>tr>td {
+        border-color: white;
+      }
+      .li-btn{
+        height: 35px !important;
+        margin-top: 10px !important;
+        border-bottom-width: 0px !important;
+        margin-bottom: 5px !important;
+      }
+      .li-table{
+        border-bottom-width: 0px !important;
+        padding-bottom: 0px !important;
+        padding-top: 0px !important;
+      }
+      hr {
+        margin: 5px 0px -5px 0px;
+      }
+
+      label{
+        padding-top: 7px;
+      }
+
+
+      .table-btn {
+        color: SteelBlue;
+        border-color: SteelBlue;
+      }
+      .s-dsh{
+        color:green;
+      }
+      .u-dhz ,.u-dsh{
+        color: Orange;
+      }
+
+      .u-dtj {
+        color: red;
+      }
+      .modal.left .modal-dialog,  
+      .modal.right .modal-dialog {  
+          position: fixed;  
+          margin: auto;  
+          width: 320px;  
+          height: 100%;  
+          -webkit-transform: translate3d(0%, 0, 0);  
+              -ms-transform: translate3d(0%, 0, 0);  
+               -o-transform: translate3d(0%, 0, 0);  
+                  transform: translate3d(0%, 0, 0);  
+      }  
+    
+      .modal.left .modal-content,  
+      .modal.right .modal-content {  
+          height: 100%;  
+          overflow-y: auto;  
+      }  
+        
+      .modal.left .modal-body,  
+      .modal.right .modal-body {  
+          padding: 15px 15px 50px;  
+      }  
+    
+      /*Left*/  
+      .modal.left.fade .modal-dialog{  
+          left: -320px;  
+          -webkit-transition: opacity 0.3s linear, left 0.3s ease-out;  
+             -moz-transition: opacity 0.3s linear, left 0.3s ease-out;  
+               -o-transition: opacity 0.3s linear, left 0.3s ease-out;  
+                  transition: opacity 0.3s linear, left 0.3s ease-out;  
+      }  
+        
+      .modal.left.fade.in .modal-dialog{  
+          left: 0;  
+      }  
+            
+      /*Right*/  
+      .modal.right.fade .modal-dialog {  
+          right: -320px;  
+          -webkit-transition: opacity 0.3s linear, right 0.3s ease-out;  
+             -moz-transition: opacity 0.3s linear, right 0.3s ease-out;  
+               -o-transition: opacity 0.3s linear, right 0.3s ease-out;  
+                  transition: opacity 0.3s linear, right 0.3s ease-out;  
+      }  
+        
+      .modal.right.fade.in .modal-dialog {  
+          right: 0;  
+      }  
+    
+      /* ----- MODAL STYLE ----- */  
+      .modal-content {  
+          border-radius: 0;  
+          border: none;  
+      }  
+    
+      .modal-header {  
+          border-bottom-color: #EEEEEE;  
+          background-color: #FAFAFA;  
+      } 
+    </style>
+
+    <![endif]-->
+  </head>
+  <body>
+    
+    <div id="p2" class="easyui-navpanel">
+      <header>
+        <div class="m-toolbar">
+          <div class="m-left">
+            <a href="#" class="easyui-linkbutton m-back" data-options="plain:true,outline:true,back:true">Back</a>
+          </div>
+          <div class="m-title">头部</div>
+        </div>
+      </header>
+      <ul class="m-list">
+        <li class="li-btn"><button class="btn btn-primary m-right" type="button" data-toggle="modal" data-target="#myModal">查询筛选</button></li>
+        <li class="li-table">
+          <table class="table h5">
+            <tr>
+              <td>申请机构</td>
+              <td class="text-right">CNCS20170005133</td>
+            </tr>
+            <tr>
+              <td>申请机构</td>
+              <td class="text-right">北京京煤集团总医院</td>
+            </tr>
+            <tr>
+              <td>申请科室</td>
+              <td class="text-right">神经内科</td>
+            </tr>
+            <tr><td colspan="2"><hr></td></tr>
+            <tr>
+              <td>申请医生</td>
+              <td class="text-right">贾金兰</td>
+            </tr>
+            <tr>
+              <td>患者姓名</td>
+              <td class="text-right">张巧花</td>
+            </tr>
+            <tr>
+              <td>住院号</td>
+              <td class="text-right">0874698462</td>
+            </tr>
+            <tr>
+              <td>会诊状态</td>
+              <td class="text-right s-dsh">待审核</td>
+            </tr>
+            <tr>
+              <td>申请日期</td>
+              <td class="text-right">2017-10-18 15:03:01</td>
+            </tr>
+            <tr>
+              <td>会诊日期</td>
+              <td class="text-right">2017-10-18 15:23:54</td>
+            </tr>
+            <tr>
+              <td>会诊科室</td>
+              <td class="text-right">神经内科</td>
+            </tr>
+            <tr>
+              <td>详情</td>
+              <td class="text-right">记录单</td>
+            </tr>
+            <tr>
+              <td style="vertical-align: middle;">切换科室</td>
+              <td class="text-right"><button class="btn btn-default table-btn" type="button" onclick="alert(1)">切换科室</button></td>
+            </tr>
+          </table>
+        </li>
+        <li class="li-table">
+          <table class="table h5">
+            <tr><td colspan="2" class="h4"><strong>心血管内科999床水色计会诊</strong></td></tr>
+            <tr>
+              <td>申请会诊时间</td>
+              <td class="text-right">2017-10-17 16:10:00</td>
+            </tr>
+            <tr>
+              <td>拟会诊时间</td>
+              <td class="text-right">2017-10-17 18:19:00</td>
+            </tr>
+            <tr><td colspan="2"><hr></td></tr>
+            <tr>
+              <td>类型</td>
+              <td class="text-right u-hztype">多科室会诊</td>
+            </tr>
+            <tr>
+              <td class="u-dtj">●待提交</td>
+              <td class="text-right"><button class="btn btn-default u-hztype" type="button" onclick="alert(2)">处理>></button></td>
+            </tr>
+          </table>
+        </li>
+      </ul>
+    </div>
+    <div class="modal right fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">  
+      <div class="modal-dialog">  
+        <div class="modal-content">  
+          <div class="modal-body">  
+            <form class="form-horizontal" id="form0">
+              <div class="form-group">
+                <label for="searchType" class="col-xs-4 control-label">查询类型</label>
+                <div class="col-xs-8">
+                  <select class="form-control" id="searchType">
+                    <option>会诊时间</option>
+                    <option>申请时间</option>
+                    <option>诊断时间</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="starttime" class="col-xs-2 control-label"> </label>
+                <div class="col-xs-10">
+                  <input type="datetime" class="form-control" id="starttime">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="endtime" class="col-xs-2 control-label">至</label>
+                <div class="col-xs-10">
+                  <input type="datetime" class="form-control" id="endtime">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="hzName" class="col-xs-4 control-label">患者姓名</label>
+                <div class="col-xs-8">
+                  <input type="text" class="form-control" id="hzName">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="hzStatus" class="col-xs-4 control-label">会诊状态</label>
+                <div class="col-xs-8">
+                  <select class="form-control" id="hzStatus">
+                    <option>驳回带提交</option>
+                    <option>未提交</option>
+                    <option>未审核</option>
+                    <option>已通过</option>
+                  </select>
+                </div>
+              </div>
+            </form>
+            <button type="button" class="btn btn-primary col-xs-4 pull-right" data-toggle="collapse" data-target="#form1">显示更多</button>
+            <form class="collapse" id="form1" style="margin-top: 45px;">
+              <div class="form-group">
+                <label for="appOrgan">申请机构</label>
+                <select class="form-control" id="appOrgan">
+                  <option>武进区中医医院</option>
+                  <option>常州市第一人民医院</option>
+                  <option>阳湖二院</option>
+                  <option>坂上眼科医院</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="appDept">申请科室</label>
+                <select class="form-control" id="appDept">
+                  <option>心理咨询</option>
+                  <option>德国骨科</option>
+                  <option>坂上眼科</option>
+                  <option>耳鼻喉专科</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="hzOrgan">会诊机构</label>
+                <select class="form-control" id="hzOrgan">
+                  <option>武进区中医医院</option>
+                  <option>常州市第一人民医院</option>
+                  <option>阳湖二院</option>
+                  <option>坂上眼科医院</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="hzDept">会诊科室</label>
+                <select class="form-control" id="hzDept">
+                  <option>心理咨询</option>
+                  <option>德国骨科</option>
+                  <option>坂上眼科</option>
+                  <option>耳鼻喉专科</option>
+                </select>
+              </div>
+            </form>
+          </div>  
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default col-xs-3">重置</button>
+            <button type="button" class="btn btn-primary col-xs-5">查询</button>
+            <button type="button" class="btn btn-default col-xs-3" data-dismiss="modal">关闭</button>
+          </div>
+        </div>  
+      </div>  
+    </div> 
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
+    <script type="text/javascript">
+      
+    </script>
+  </body>
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html class="g-container">
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<script type="text/javascript" src="../../util.js"></script>
+    	<script type="text/javascript" src="../../mui.js"></script>
+	</head>
+	<body class="g-container">
+		<div id="slider" class="mui-slider">
+			<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+				<a v-for="(item,index) in items" :class="index>0?'mui-control-item':'mui-control-item mui-active'" :href="['#'+item.id]">{{item.title}}</a>
+			</div>
+			<div class="mui-slider-group">
+				<div class="mui-slider-item mui-control-content" v-for="(item,index) in items" :id="item.id">
+					<div :id="['scroll'+index]" class="mui-scroll-wrapper">
+						<div class="mui-scroll">
+							<div class="mui-loading">
+								<div class="mui-spinner">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="dzl-hide">
+				<div id="tab1">
+					<form class="mui-input-group" id="form1">
+						<div class="mui-input-row">
+							<label for="textbox0">textbox</label>
+							<input id="textbox0" type="text" class="mui-input-clear">
+						</div>
+						<div class="mui-input-row">
+							<label for="combobox0">combobox</label>
+							<input id="combobox0" type="text" readonly="true" >
+						</div>
+						<div class="mui-input-row">
+							<label for="combobox1">combobox(2)</label>
+							<input id="combobox1" type="text" readonly="true" >
+						</div>
+						<div class="mui-input-row">
+							<label for="combobox2">combobox(3)</label>
+							<input id="combobox2" type="text" readonly="true" >
+						</div>
+						<div class="mui-input-row">
+							<label for="datebox0">datebox</label>
+							<input id="datebox0" type="text" readonly="true" >
+						</div>
+						<div class="mui-input-row">
+							<label for="datetimebox0">datetimebox</label>
+							<input id="datetimebox0" type="text" readonly="true" >
+						</div>
+						<div class="mui-input-row">
+							<label for="numberbox0">numberbox</label>
+							<div id="numberbox0" class="mui-numbox" data-numbox-step='10' data-numbox-min='10' data-numbox-max='90'>
+								<button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
+								<input class="mui-input-numbox" type="number" />
+								<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
+							</div>
+						</div>
+						<div class="mui-input-row">
+							<label for="switchbutton0">switchbutton</label>
+							<div id="switchbutton0" class="mui-switch">
+								<div class="mui-switch-handle"></div>
+							</div>
+						</div>
+						<div id="checkboxlist0">
+							<checkboxlist></checkboxlist>
+						</div>
+						<div id="radiobuttonlist0">
+							<radiobuttonlist></radiobuttonlist>
+						</div>
+						<div class="mui-input-row mui-search">
+							<input type="search" class="mui-input-clear" placeholder="">
+						</div>
+						<div class="mui-multi-row">
+							<label for="multitext0">multitextbox</label>
+							<textarea id="multitext0" rows="5" placeholder="多行文本框"></textarea>
+						</div>
+						<div class="mui-button-row">
+							<button class="mui-btn mui-btn-primary" type="button" id="btn0">提交</button>&nbsp;&nbsp;
+						</div>
+					</form>
+
+					<form class="mui-input-group">
+						
+					</form>
+					
+				</div>
+				<div id="tab2">
+					
+				</div>
+				<div id="tab3">
+					tab3
+				</div>
+				<div id="tab4">
+					tab4
+				</div>
+				<div id="tab5">
+					tab5
+				</div>
+			</div>
+		</div>
+
+
+		<script>
+			var options = [{
+				title:"高血压保卡",
+				id:"item1mobile",
+				content:"tab1",
+				init:function(){alert("tab1");}
+			},{
+				title:"分级管理",
+				id:"item2mobile",
+				content:"tab2",
+				init:function(){alert("tab2");}
+			},{
+				title:"随访信息",
+				id:"item3mobile",
+				content:"tab3",
+				init:function(){alert("tab3");}
+			},{
+				title:"血压曲线图",
+				id:"item4mobile",
+				content:"tab4",
+				init:function(){alert("tab4");}
+			}];
+			var slider = new h5ui.slider("slider",options);
+
+			var form1 = new h5ui.form("form1");
+
+			var texbox0options = {
+				value:"textbox0"
+			};
+
+			var textbox0 = new h5ui.textbox("textbox0",texbox0options);
+
+			form1.fields.push(textbox0);
+
+			var numberbox0options = {
+				value:"50"
+			};
+
+			var numberbox0 = new h5ui.numberbox("numberbox0",numberbox0options);
+			form1.fields.push(numberbox0);
+
+			var switchbutton0options = {
+				value:true
+			};
+
+			var switchbutton0 =  new h5ui.switchbutton("switchbutton0",switchbutton0options);
+
+			form1.fields.push(switchbutton0);
+
+			var multitext0options = {
+				value:"multitext"
+			};
+
+			var multitext0 = new h5ui.multitext("multitext0",multitext0options);
+
+			form1.fields.push(multitext0);
+
+			var combobox0options = {
+				value:"combobox0",
+				data:[{
+					value: 'ywj',
+					text: '董事长 叶文洁'
+				}, {
+					value: 'aaa',
+					text: '总经理 艾AA'
+				}, {
+					value: 'lj',
+					text: '罗辑'
+				}, {
+					value: 'ymt',
+					text: '云天明'
+				}, {
+					value: 'shq',
+					text: '史强'
+				}, {
+					value: 'zhbh',
+					text: '章北海'
+				}, {
+					value: 'zhy',
+					text: '庄颜'
+				}, {
+					value: 'gyf',
+					text: '关一帆'
+				}, {
+					value: 'zhz',
+					text: '智子'
+				}, {
+					value: 'gezh', 
+					text: '歌者'
+				}]
+			};
+
+			var combobox0 = new h5ui.combobox("combobox0",combobox0options);
+
+			form1.fields.push(combobox0);
+
+			var combobox1options = {
+				value:"combobox0",
+				layer:2,
+				data:cityData
+			};
+
+			var combobox1 = new h5ui.combobox("combobox1",combobox1options);
+			form1.fields.push(combobox1);
+
+			var combobox2options = {
+				value:"combobox0",
+				layer:3,
+				data:cityData3
+			};
+
+			var combobox2 = new h5ui.combobox("combobox2",combobox2options);
+			form1.fields.push(combobox2);
+
+
+			var datebox0options = {
+				value:"2014-01-01",
+				type:'{"type":"date"}'
+			};
+			var datebox0 = new h5ui.datebox("datebox0",datebox0options);
+			form1.fields.push(datebox0);
+
+			var datetimebox0options = {
+				value:"2014-01-01 15:37",
+				type:"{}"
+			};
+			var datetimebox0 = new h5ui.datebox("datetimebox0",datetimebox0options);
+			form1.fields.push(datetimebox0);
+
+			var checkboxlist0options = {
+				title:"爱好",
+				data:[{
+					id:"0",
+					text:"打乒乓",
+					disabled:"",
+					checked:""
+				},{
+					id:"1",
+					text:"打篮球"
+				}]
+			};
+			var checkboxlist0 = new h5ui.checkboxlist("checkboxlist0",checkboxlist0options);
+
+			var radiobuttonlist0options = {
+				title:"性别",
+				data:[{
+					id:"0",
+					text:"男",
+					disabled:"",
+					checked:""
+				},{
+					id:"1",
+					text:"女"
+				}]
+			};
+			var radiobuttonlist0 = new h5ui.radiobuttonlist("radiobuttonlist0",radiobuttonlist0options);
+		</script>
+
+	</body>
+
+</html>
